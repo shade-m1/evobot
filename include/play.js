@@ -23,7 +23,7 @@ module.exports = {
         ifqueue.textChannel.send("I have left the channel. See you again.").catch(console.error);} else return },300000);
         queue.channel.leave();
         queue.textChannel.send("Leaving voice channel...");
-      }, STAY_TIME * 1000);
+      }
       queue.textChannel.send("❌ Music queue ended.").catch(console.error);
       return message.client.queue.delete(message.guild.id);
     }
