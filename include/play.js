@@ -18,11 +18,10 @@ module.exports = {
 
     const queue = message.client.queue.get(message.guild.id);
 
-    if (!song) {
-      setTimeout(function() { if (!queue.connection.dispatcher && message.guild.me.voice.channel ) {queue.channel.leave();
+    setTimeout(function() { if (!queue.connection.dispatcher && message.guild.me.voice.channel ) {queue.channel.leave();
         ifqueue.textChannel.send("I have left the channel. See you again.").catch(console.error);} else return },300000);
         queue.channel.leave();
-      }
+
     let stream = null;
     let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
 
