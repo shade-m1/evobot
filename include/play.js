@@ -22,12 +22,7 @@ module.exports = {
       setTimeout(function() { if (!queue.connection.dispatcher && message.guild.me.voice.channel ) {queue.channel.leave();
         ifqueue.textChannel.send("I have left the channel. See you again.").catch(console.error);} else return },300000);
         queue.channel.leave();
-        queue.textChannel.send("Leaving voice channel...");
       }
-      queue.textChannel.send("❌ Music queue ended.").catch(console.error);
-      return message.client.queue.delete(message.guild.id);
-    }
-
     let stream = null;
     let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
 
