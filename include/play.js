@@ -19,8 +19,8 @@ module.exports = {
     const queue = message.client.queue.get(message.guild.id);
 
     if (!song) {
-      setTimeout(function () {
-        if (queue.connection.dispatcher && message.guild.me.voice.channel) return;
+      setTimeout(function() { if (!queue.connection.dispatcher && message.guild.me.voice.channel ) {queue.channel.leave();
+        ifqueue.textChannel.send("I have left the channel. See you again.").catch(console.error);} else return },300000);
         queue.channel.leave();
         queue.textChannel.send("Leaving voice channel...");
       }, STAY_TIME * 1000);
