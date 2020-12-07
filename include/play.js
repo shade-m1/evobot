@@ -18,7 +18,15 @@ module.exports = {
 
     const queue = message.client.queue.get(message.guild.id);
 
-
+    if (!song) {
+      setTimeout(function () {
+        if (queue.connection.dispatcher && message.guild.me.voice.channel) return;
+        queue.channel.leave();
+        queue.textChannel.send("Leaving voice channel...");
+      }, STAY_TIME * 1000);
+      queue.textChannel.send("❌ Music queue ended.").catch(console.error);
+      return message.client.queue.delete(message.guild.id);
+    }
 
     let stream = null;
     let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
@@ -178,9 +186,6 @@ module.exports = {
           break;
       }
     });
-    setTimeout(function() { if (!queue.connection.dispatcher && message.guild.me.voice.channel ) {queue.channel.leave();
-        ifqueue.textChannel.send("I have left the channel. See you again.").catch(console.error);} else return },300000);
-        queue.channel.leave();
 
     collector.on("end", () => {
       playingMessage.reactions.removeAll().catch(console.error);
